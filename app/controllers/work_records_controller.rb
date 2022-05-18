@@ -1,0 +1,2 @@
+class WorkRecordsController < ApplicationController
+end
