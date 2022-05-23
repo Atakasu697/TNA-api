@@ -12,7 +12,6 @@ module V1
     end
 
     def create
-      logger.debug('===============test log create================')
       work_record = WorkRecord.new(work_record_params)
       logger.debug(work_record)
       if work_record.save
