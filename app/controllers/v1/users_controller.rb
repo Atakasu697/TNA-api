@@ -3,7 +3,8 @@ module V1
     before_action :set_user, only: [:show, :update, :destroy]
 
     def index
-      users = User.order(created_at: :desc)
+      # users = User.order(created_at: :desc)
+      users = User.joins(:work_records).select('users.*, work_records.category_id')
       render json: {status: 'SUCCESS', message: 'Loaded users', data: users}
     end
 
@@ -12,7 +13,6 @@ module V1
     end
 
     def create
-      logger.debug('===============test log create================')
       user = User.new(user_params)
       logger.debug(user)
       if user.save
