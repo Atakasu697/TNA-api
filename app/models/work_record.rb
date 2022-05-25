@@ -1,5 +1,4 @@
 class WorkRecord < ApplicationRecord
   belongs_to :user
-
-  has_one :category
+  belongs_to :category
 end

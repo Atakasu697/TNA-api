@@ -3,7 +3,8 @@ module V1
     before_action :set_work_record, only: [:show, :update, :destroy]
 
     def index
-      work_records = WorkRecord.order(created_at: :desc)
+      # work_records = WorkRecord.order(created_at: :desc)
+      work_records = WorkRecord.joins(:category).select('work_records.id, work_records.date_time, categories.name')
       render json: {status: 'SUCCESS', message: 'Loaded work_records', data: work_records}
     end
 
