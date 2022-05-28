@@ -20,6 +20,15 @@ describe 'ユーザーcontroller test', type: :system do
         Rails.logger.debug(response) 
         expect(200).to eq(200)
       end
+
+      it 'test 2' do
+        get '/v1/users'
+
+        puts 'test message'
+        puts response
+        Rails.logger.debug(response) 
+        expect(200).to eq(200)
+      end
     end
   end
 end

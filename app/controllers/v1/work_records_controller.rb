@@ -4,7 +4,7 @@ module V1
 
     def index
       # work_records = WorkRecord.order(created_at: :desc)
-      work_records = WorkRecord.joins(:category).select('work_records.id, work_records.date_time, categories.name')
+      work_records = WorkRecord.joins(:category).select('work_records.*, categories.name')
       render json: {status: 'SUCCESS', message: 'Loaded work_records', data: work_records}
     end
 
@@ -18,7 +18,8 @@ module V1
       if work_record.save
         render json: {states: 'SUCCESS', data: work_record}
       else
-        render json: {status: 'ERROR', data: work_record.errors}
+        render json: {status: 'ERROR', data: work_record}
+        # render json: {status: 'ERROR', data: work_record.errors}
       end
     end
 
@@ -42,7 +43,9 @@ module V1
     end
 
     def work_record_params
-      params.permit(:name)
+      # params.require.permit(:category_id, :uesr_id)
+      # params.permit(:category_id, :uesr_id)
+      params.permit(:category_id, :user_id, :date_time)
     end
   end
 end
